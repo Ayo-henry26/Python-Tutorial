@@ -1,0 +1,2 @@
+I created a new txt file just to use it as an example of the with statement
+I still have a long way to go but by God's Grace I will become the best in all things I do
