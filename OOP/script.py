@@ -131,7 +131,7 @@ print(BankAccount.is_valid_interest_rate(6))
 # print(account.balance) 
 
 
-class BetterEncapsulation:
+class BankingApp:
     def __init__(self):
         self._balance = 0.0
         
@@ -148,12 +148,31 @@ class BetterEncapsulation:
         if amount <= 0:
             raise ValueError("Withdrawal amount must be positive")
         if amount > self._balance:
-            raise ValueError("Not enough money in the account")
+            raise ValueError("Insufficient funds")
         self._balance -= amount
         
+app = BankingApp()
+app.deposit(1000)
+print(app.balance)
+
+
+#ABSTRACTION
+class EmailService:
+    def _connect(self):
+        print("Connecting to email server.....")
         
-account = BetterEncapsulation()
-account.deposit(1000)
-print(account.balance)
-account.withdraw(250)
-print(account.balance)
+    def _authenticate(self, username):
+        print(f"Authenticating user..... Welcome {username}")
+        
+    def send_email(self):
+        self._connect()
+        self._authenticate("Henry")
+        print("Sending email..... You just graduated with first class honors!")
+        self._disconnect()
+        
+    def _disconnect(self):
+        print("Disconnecting from email server.....")
+        
+        
+email = EmailService()
+email.send_email()
