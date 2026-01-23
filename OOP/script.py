@@ -148,7 +148,7 @@ class BetterEncapsulation:
         if amount <= 0:
             raise ValueError("Withdrawal amount must be positive")
         if amount > self._balance:
-            raise ValueError("Insufficient funds")
+            raise ValueError("Not enough money in the account")
         self._balance -= amount
         
         
