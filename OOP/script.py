@@ -218,3 +218,46 @@ bike.stop()
 
 #POLYMORPHISM
 
+class Animal:
+    def __init__(self, name, breed, species):
+        self.name = name
+        self.breed = breed
+        self.species = species
+        
+    def speak(self):
+        print("Different animals make different sounds")
+        
+    def nutrition(self):
+        print("Animals have different dietary needs")
+        
+        
+class Cat(Animal):
+    def __init__(self, name, breed, species, dietary):
+        super().__init__(name, breed, species)
+        self.dietary = dietary
+        
+    def speak(self):
+        print(f"{self.name} usually Meow!")
+        
+    def nutrition(self):
+        print(f"{self.name} is a {self.dietary}, it eats fish and meat.")
+        
+class Goat(Animal):
+    def __init__(self, name, breed, species, dietary):
+        super().__init__(name, breed, species)
+        self.dietary = dietary
+
+    def speak(self):
+        print(f"{self.name} usually Bleat!")
+
+    def nutrition(self):
+        print(f"{self.name} is a {self.dietary} it eats grass and leaves.")
+        
+        
+cat = Cat("Whiskers", "Siamese", "Feline", "carnivorous")
+goat = Goat("Benny", "Nubian", "Caprine", "herbivorous")
+
+cat.speak()
+cat.nutrition()
+goat.speak()
+goat.nutrition()
