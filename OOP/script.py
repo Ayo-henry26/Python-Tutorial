@@ -254,10 +254,21 @@ class Goat(Animal):
         print(f"{self.name} is a {self.dietary} it eats grass and leaves.")
         
         
-cat = Cat("Whiskers", "Siamese", "Feline", "carnivorous")
-goat = Goat("Benny", "Nubian", "Caprine", "herbivorous")
+animals = [
+    Cat("Whiskers", "Siamese", "Feline", "carnivorous"),
+    Goat("Benny", "Nubian", "Caprine", "herbivorous")
+]
 
-cat.speak()
-cat.nutrition()
-goat.speak()
-goat.nutrition()
+for animal in animals:
+    if isinstance(animal, Cat):
+        print(f"{animal.name} is a ({type(animal).__name__}) of breed {animal.breed} ")
+        animal.speak()
+        animal.nutrition()
+        
+    elif isinstance(animal, Goat):
+        print(f"{animal.name} is a ({type(animal).__name__}) of breed {animal.breed} ")
+        animal.speak()
+        animal.nutrition()
+        
+    else:
+        raise Exception("Unknown animal type")
