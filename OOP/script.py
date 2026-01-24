@@ -211,3 +211,10 @@ bike = Bike("MotoGT", "Ghost", 2023, 2)
 print(car.__dict__)
 print(bike.__dict__)
 car.start()
+bike.stop()
+
+
+
+
+#POLYMORPHISM
+
