@@ -254,21 +254,25 @@ class Goat(Animal):
         print(f"{self.name} is a {self.dietary} it eats grass and leaves.")
         
         
-animals = [
+class Pig(Animal):
+    def __init__(self, name, breed, species, dietary):
+        super().__init__(name, breed, species)
+        self.dietary = dietary
+
+    def speak(self):
+        print(f"{self.name} usually Snorts!")
+
+    def nutrition(self):
+        print(f"{self.name} is a {self.dietary}, it eats a variety of foods.")
+        
+        
+animals: list[Animal] = [
     Cat("Whiskers", "Siamese", "Feline", "carnivorous"),
-    Goat("Benny", "Nubian", "Caprine", "herbivorous")
+    Goat("Benny", "Nubian", "Caprine", "herbivorous"),
+    Pig("Ben", "Boar", "Page", "omnivorous")
 ]
 
 for animal in animals:
-    if isinstance(animal, Cat):
-        print(f"{animal.name} is a ({type(animal).__name__}) of breed {animal.breed} ")
-        animal.speak()
-        animal.nutrition()
-        
-    elif isinstance(animal, Goat):
-        print(f"{animal.name} is a ({type(animal).__name__}) of breed {animal.breed} ")
-        animal.speak()
-        animal.nutrition()
-        
-    else:
-        raise Exception("Unknown animal type")
+    print(f"{animal.name} is a ({type(animal).__name__}) of breed {animal.breed} ")
+    animal.speak()
+    animal.nutrition()
