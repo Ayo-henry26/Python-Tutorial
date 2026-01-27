@@ -21,7 +21,26 @@ class Player(Entity):
         self.inventory = []
         
     def attack(self, enemy):
-        damage = 
+        damage = random.randint(self.attack_power - 5, self.attack_power + 5)
+        print(f"\n>> {self.name} swings their sword at {enemy.name}!")
+        enemy.take_damage(damage)
+        
+        
+class Enemy(Entity):
+    def attack(self, player):
+        damage = random.randint(self.attack_power - 2, self.attack_power + 2)
+        print(f">> {self.name} attacks {player.name}!")
+        player.take_damage(damage)
+        
+class Goblin(Enemy):
+    def __init__(self):
+        super().__init__(name="Oburo the Goblin King", health=75, attack_power=10)
+        
+class Dragon(Enemy):
+    def __init__(self):
+        super().__init__(name="Ragna the Dragon Lord", health=150, attack_power=25)
+        
+
         
     
     
