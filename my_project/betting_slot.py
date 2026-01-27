@@ -33,6 +33,7 @@ def check_winnings(columns, lines, bet, values):
             winnings += values[symbol] * bet
             winning_lines.append(line + 1)
     return winnings, winning_lines
+
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
     for symbol, symbol_count in symbols.items():
@@ -48,6 +49,7 @@ def get_slot_machine_spin(rows, cols, symbols):
             column.append(value)
         columns.append(column)
     return columns
+
 def print_slot_machine(columns):
     for row in range(len(columns[0])):
         for i, column in enumerate(columns):
@@ -56,6 +58,7 @@ def print_slot_machine(columns):
             else:
                 print(column[row], end="")
         print()
+        
 def deposit():
     while True:
         amount = input("What will you like to deposit? $")
@@ -68,6 +71,7 @@ def deposit():
         else:
             print("Please enter a number.")
     return amount
+
 def get_number_lines():
     while True:
         lines = input("Enter the number of lines to bet on (1 -" + str(MAX_LINES) + ")? ")
@@ -80,6 +84,7 @@ def get_number_lines():
         else:
             print("Please enter a number.")
     return lines
+
 def get_bet():
     while True:
         amount = input("What will you like to bet on each line? $")
@@ -92,6 +97,7 @@ def get_bet():
         else:
             print("Please enter a number.")
     return amount
+
 def spin(balance):
     lines = get_number_lines()
     while True:
@@ -110,6 +116,7 @@ def spin(balance):
     print(f"You won ${winnings}")
     print(f"You won on lines: ",*winning_lines)
     return winnings - total_bet
+
 def main():
     balance = deposit()
     while True:
