@@ -40,7 +40,7 @@ class Dragon(Enemy):
     def __init__(self):
         super().__init__(name="Ragna the Dragon Lord", health=150, attack_power=30)
         
-class Dungeon:
+class DungeonGame:
     def __init__(self):
         self.player = None
         self.enemy_types = [Goblin, Dragon]
@@ -49,13 +49,14 @@ class Dungeon:
         print("==============Welcome to VOID DUNGEON==============")
         name = input("Enter your name: Yuusha ")
         self.player = Player(name)
+        self.spawn_enemy()
         
         
     def spawn_enemy(self):
         enemy_class = random.choice(self.enemy_types)
         self.current_enemy = enemy_class()
         print(f"\nA wild {self.current_enemy.name} appeared!")
-        
+        self.battle_loop()
         
     def battle_loop(self):
         while self.player.is_alive() and self.current_enemy.is_alive():
@@ -64,7 +65,23 @@ class Dungeon:
             if action == 'a':
                 self.player.attack(self.current_enemy)
                 
+                if self.current_enemy.is_alive():
+                    self.current_enemy.attack(self.player)
+                
+            elif action == 'r':
+                print("You escaped......")
+                return
         
+        if self.player.is_alive():
+            print(f"Victory!!, {self.current_enemy.name} has been defeated")
+            
+        else:
+            print(f"Game Over, You died in the Dungeon losing to {self.current_enemy.name}")
+            
+    
+if __name__ == "__main__":
+    game = DungeonGame()
+    game.start()
         
         
 
