@@ -1,11 +1,13 @@
 <html>
 <head>
-    <title>Ghost House</title>
+    <title>{% block title %}Ghost House{% endblock %}</title>
 </head>
 <body>
 
-    <p>Base Templates</p>
-
+    <div id="content", name="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 </body>
 </html>
