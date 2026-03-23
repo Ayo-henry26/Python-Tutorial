@@ -10,8 +10,7 @@ import datetime
 
 load_dotenv()
 
-API_KEY = os.getenv('GOOGLE_API_KEY')
-SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
+
 
 # Create your views here.
 def home(request):
@@ -23,8 +22,8 @@ def home(request):
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=2488016460c463badee1ffa11b347764"
     PARAMS = {'units':'metric'}
     
-    API_KEY = 'AIzaSyC679-kFjcc6riBGvvWMja4lR81ACRvvM0'
-    SEARCH_ENGINE_ID = '3655bc726adfe4282'
+    API_KEY = os.getenv('GOOGLE_API_KEY')
+    SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
     
     query = city + "1920x1080"
     page = 1
