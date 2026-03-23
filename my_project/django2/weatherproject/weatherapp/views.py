@@ -1,16 +1,12 @@
 import os
 from dotenv import load_dotenv
 
-
 from django.shortcuts import render
 from django.contrib import messages
 import requests
 import datetime
 
-
 load_dotenv()
-
-
 
 # Create your views here.
 def home(request):
@@ -34,13 +30,11 @@ def home(request):
     data = requests.get(city_url).json()
     count = 1
     search_items = data.get("items")
-    if search_items and len(search_items) > 1:
-        image_url = search_items[1]['link']
-        
+    if search_items and len(search_items) > 0:
+        image_url = search_items['link']
     else:
-        image_url = "hhtps://via.placeholder.com/1920x1080?text=No+Image+Found"
-    
-    
+        image_url = "https://images.pexels.com/photos/3008509/pexels-photo-3008509.jpeg?auto=compress&cs=tinysrgb&w=1600"
+
     try:
         data = requests.get(url, PARAMS).json()
         
@@ -58,4 +52,4 @@ def home(request):
         messages.error(request, 'Entered data is not available to API')
         day = datetime.datetime.today()
         
-        return render(request, 'weatherapp/index.html', {'city': 'ilorin', 'description': 'clear sky', 'icon': icon  ,'temp':temp, 'day': day, 'exception_occurred': exception_occurred})
+        return render(request, 'weatherapp/index.html', {'city': city, 'description': 'clear sky', 'icon': '01d'  ,'temp':25, 'day': day, 'exception_occurred': exception_occurred})
