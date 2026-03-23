@@ -1,8 +1,17 @@
+import os
+from dotenv import load_dotenv
+
+
 from django.shortcuts import render
 from django.contrib import messages
 import requests
 import datetime
 
+
+load_dotenv()
+
+API_KEY = os.getenv('GOOGLE_API_KEY')
+SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 
 # Create your views here.
 def home(request):
@@ -21,11 +30,16 @@ def home(request):
     page = 1
     start = (page - 1) * 10 + 1
     searchType = 'image'
-    city_url = f"https://www.googleapis.com/customsearch/v1?q={query}&cx={SEARCH_ENGINE_ID}&key={API_KEY}&searchType={searchType}&start={start}&imgSize=xlarge"
+    city_url = f"https://www.googleapis.com/customsearch/v1?key={API_KEY}&cx={SEARCH_ENGINE_ID}&q={query}&start={start}&searchType={searchType}&imgSize=xlarge"
+    
     data = requests.get(city_url).json()
     count = 1
     search_items = data.get("items")
-    image_url = search_items[1]['link']
+    if search_items and len(search_items) > 1:
+        image_url = search_items[1]['link']
+        
+    else:
+        image_url = "hhtps://via.placeholder.com/1920x1080?text=No+Image+Found"
     
     
     try:
