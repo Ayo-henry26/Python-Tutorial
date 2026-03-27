@@ -14,7 +14,7 @@ def signup(request):
         
         my_user = User.objects.create_user(frn, emailid, pwd)
         my_user.save()
-        return redirect("/login")
+        return redirect("/loginn")
         
     return render(request, "signup.html")
 
