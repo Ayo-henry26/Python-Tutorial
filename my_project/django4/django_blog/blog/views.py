@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Posts
 
 # Create your views here.
 def loginn(request):
@@ -9,7 +10,10 @@ def signup(request):
     return render(request, 'blog/signup.html')
 
 def home(request):
-    return render(request, 'blog/home.html')
+    context = {
+        'posts': Posts.objects.all()
+    }
+    return render(request, 'blog/home.html', context)
 
 def newpost(request):
     return render(request, 'blog/newpost.html')
