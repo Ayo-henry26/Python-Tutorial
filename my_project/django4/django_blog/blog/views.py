@@ -7,8 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 def loginn(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        password = request.POST.get('password')
+        name = request.POST.get('uname')
+        password = request.POST.get('upassword')
         userr = authenticate(username=name, password=password)
         if userr is not None:
             login(request, userr)
@@ -21,9 +21,9 @@ def loginn(request):
 
 def signup(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+        name = request.POST.get('uname')
+        email = request.POST.get('uemail')
+        password = request.POST.get('upassword')
         newUser = User.objects.create_user(username=name, email=email, password=password)
         newUser.save()
         return redirect('/loginn')
@@ -38,6 +38,7 @@ def home(request):
 
 
 def newpost(request):
+    
     return render(request, 'blog/newpost.html')
 
 
