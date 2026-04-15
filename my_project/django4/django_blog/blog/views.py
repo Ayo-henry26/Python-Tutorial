@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from . import models
 from .models import Posts
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -38,13 +39,22 @@ def home(request):
 
 
 def newpost(request):
-    
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        npost = models.Posts(title=title, content=content, author=request.user)
+        npost.save()
+        return redirect('/home')
     return render(request, 'blog/newpost.html')
 
 
 def mypost(request):
-    return render(request, 'blog/mypost.html')
+    context = {
+        'posts': Posts.objects.filter(author = request.user)
+    }
+    return render(request, 'blog/mypost.html', context)
 
 
 def signout(request):
-    return render(request, 'blog/signout.html')
+    logout(request)
+    return redirect('/loginn')
